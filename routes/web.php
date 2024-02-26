@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Appointments\CreateAppointment;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::middleware([
     'auth:sanctum',
@@ -26,3 +31,5 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/appointment', CreateAppointment::class);

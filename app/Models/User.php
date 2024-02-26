@@ -24,7 +24,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
+        'role',
         'email',
         'password',
     ];
@@ -58,4 +60,11 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /*
+        Define one-to-many relationship between a User and Appointments
+    */
+    public function appointments()
+    {
+    }
 }

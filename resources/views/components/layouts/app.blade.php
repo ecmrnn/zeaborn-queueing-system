@@ -18,7 +18,7 @@
         @livewireStyles
     </head>
     <body>
-        <div class="text-gray-900 antialiased">
+        <div class="min-h-screen bg-gray-50 flex flex-col sm:justify-center items-center sm:pt-0">
             {{ $slot }}
         </div>
 
