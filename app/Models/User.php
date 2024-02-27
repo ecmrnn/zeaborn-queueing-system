@@ -64,7 +64,7 @@ class User extends Authenticatable
     /*
         Define one-to-many relationship between a User and Appointments
     */
-    public function appointments()
-    {
-    }
+    // public function appointments()
+    // {
+    // }
 }

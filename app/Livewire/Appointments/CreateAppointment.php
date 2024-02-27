@@ -4,8 +4,8 @@ namespace App\Livewire\Appointments;
 
 use App\Models\Appointment;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class CreateAppointment extends Component
@@ -16,43 +16,53 @@ class CreateAppointment extends Component
     public $isOtherPurposeChecked = false;
 
     // Personal Information
-    #[Validate('required')]
+    #[Rule('required|min:2')]
     public $firstName = '';
-    #[Validate('required')]
+    #[Rule('required|min:2')]
     public $lastName = '';
-    #[Validate('required')]
+    #[Rule('required')]
     public $rank = '';
-    #[Validate('required')]
+    #[Rule('required')]
     public $vessel = '';
 
     // Appointment Information
-    #[Validate('required')]
+    #[Rule('required')]
     public $appointmentTime = '';
-    #[Validate('required')]
+    #[Rule('required')]
     public $reportingStaff = '';
-    #[Validate('required')]
+    #[Rule('required')]
     public $purpose = '';
+    #[Rule('min:2')]
+    public $otherStaff = '';
 
-    public function save(Request $request)
+    public function save()
     {
-        // $this->validate();
+        if ($this->reportingStaff == '') {
+            $reception = DB::table('users')->select()->where('first_name', 'reception')->first();
+            $this->reportingStaff = $reception->id;
+        }
+
+        $this->validate();
 
         Appointment::create([
-            'firstName' => $this->firstName,
-            'lastName' => $this->lastName,
+            'user_id' => $this->reportingStaff,
+            'first_name' => $this->firstName,
+            'last_name' => $this->lastName,
             'rank' => $this->rank,
             'vessel' => $this->vessel,
-            'appointmentTime' => $this->appointmentTime,
-            'reportingStaff' => $this->reportingStaff,
+            'appointment_time' => $this->appointmentTime,
             'purpose' => $this->purpose,
+            'other_staff' => $this->otherStaff,
         ]);
 
         $this->reset();
+
+        session()->flash('success', 'Appointment sent!');
     }
 
     public function render()
     {
-        $users = User::all();
+        $users = User::all()->sortBy('first_name');
         return view('livewire.appointments.create-appointment', [
             'users' => $users,
         ]);

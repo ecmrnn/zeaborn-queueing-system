@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('vessel');
             $table->string('appointment_time');
             $table->string('purpose');
+            $table->string('status')->default('pending');
+            $table->string('other_staff')->nullable()->default(null);
             $table->timestamps();
         });
     }

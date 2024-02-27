@@ -10,12 +10,14 @@ class Appointment extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'first_name',
         'last_name',
         'rank',
         'vessel',
         'appointment_time',
         'purpose',
-        'user_id',
+        'status',
+        'other_staff',
     ];
 }
