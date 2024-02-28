@@ -4,7 +4,9 @@ namespace App\Livewire\Appointments;
 
 use App\Models\Appointment;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
@@ -27,7 +29,7 @@ class CreateAppointment extends Component
 
     // Appointment Information
     #[Rule('required')]
-    public $appointmentTime = '';
+    public $appointmentTime;
     #[Rule('required')]
     public $reportingStaff = '';
     #[Rule('required')]
@@ -38,9 +40,17 @@ class CreateAppointment extends Component
     public function save()
     {
         if ($this->reportingStaff == '' || $this->otherStaff !== '') {
-            $reception = DB::table('users')->select()->where('first_name', 'reception')->first();
-            $this->reportingStaff = $reception->id;
+            $reception = User::all()->where('first_name', 'reception')->first();
+            if ($reception == null) {
+                $this->reset();
+                session()->flash('error', 'Walang reception!');
+                return;
+            } else {
+                $this->reportingStaff = $reception->id;
+            }
         }
+
+        $this->attributes['appointmentTime'] = Carbon::parse($this->appointmentTime);
 
         $this->validate();
 
@@ -60,6 +70,7 @@ class CreateAppointment extends Component
         session()->flash('success', 'Appointment sent!');
     }
 
+    #[Layout('components.layouts.guest')]
     public function render()
     {
         $users = User::all()->sortBy('first_name');

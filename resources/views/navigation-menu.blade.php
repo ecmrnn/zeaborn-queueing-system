@@ -1,18 +1,18 @@
-<nav x-data="{ open: false }" class="bg-white sm:border-r sm:border-gray-200 mb-5 sm:mb-0">
+<nav x-data="{ open: false }" class="max-h-screen bg-white border-b border-gray-200 xl:border-r xl:border-gray-200 sticky top-0 z-50">
     <!-- Primary Navigation Menu -->
-    <div class="sm:h-full flex items-center justify-between border-b border-gray-200 sm:border-0 ">
-        <div class="sm:h-full flex flex-col">
+    <div class="xl:h-full flex items-center justify-between xl:border-0 ">
+        <div class="xl:h-full flex flex-col">
             <!-- Logo -->
-            <div class="p-3 sm:py-6 flex flex-col items-center sm:border-b border-gray-200">
+            <div class="py-3 px-6 xl:py-6 flex flex-col items-center xl:border-b border-gray-200">
                 <a wire:navigate href="{{ route('dashboard') }}">
                     <x-application-mark class="block h-9 w-auto" />
                 </a>
-                <p class="hidden sm:block text-center opacity-50 text-xs">Queueing System</p>
+                <p class="hidden xl:block text-center opacity-50 text-xs">Queueing System</p>
             </div>
 
             <!-- Navigation Links -->
-            <div class="p-5 hidden sm:flex sm:flex-col sm:justify-between sm:flex-grow">
-                <div class="sm:space-y-1">
+            <div class="p-5 hidden xl:flex xl:flex-col xl:justify-between xl:flex-grow">
+                <div class="xl:space-y-1">
                     {{-- Main Menu --}}
                     <p class="ps-3 pe-4 py-2 text-primary text-sm">Main Menu</p>
                     <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" class="flex items-center gap-3">
@@ -46,8 +46,8 @@
         </div>
 
         <!-- Hamburger -->
-        <div class="me-3 flex items-center sm:hidden">
-            <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+        <div class="me-3 flex items-center xl:hidden">
+            <button @click="open = ! open" class="inline-flex items-center justify-center p-2 border border-transparent hover:border-gray-200 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 focus:border-gray-200 focus:text-gray-500 transition duration-150 ease-in-out">
                 <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -57,7 +57,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden xl:hidden border-t border-gray-200">
         <div class="pt-2 pb-3 space-y-1">
 
             {{-- Main Menu --}}

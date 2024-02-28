@@ -1,6 +1,5 @@
 <div x-data="{ show: true }" class="px-6 py-12">
-   <x-validation-errors class="mb-4" />
-
+    
     @if (session('status'))
         <div class="mb-4 font-medium text-sm text-green-600">
             {{ session('status') }}
@@ -11,6 +10,10 @@
     
     @if (session('success'))
         <x-validation-success message="{{ session('success') }}" />
+    @endif
+
+    @if (session('error'))
+        <x-validation-error message="{{ session('error') }}" />
     @endif
 
 

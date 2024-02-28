@@ -18,26 +18,10 @@
     </head>
     <body class="font-sans antialiased bg-gray-50">
         <x-banner />
-        
-        <div class="min-h-screen sm:flex">
-            @if (auth()->check())
-                @livewire('navigation-menu')
-            @endif
-            
-            <main class="p-20">
-                <!-- Page Heading -->
-                @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-                @endif
-                
-                <!-- Page Content -->
-                {{ $slot }}
-            </main>
-        </div>
+
+        <main class="min-h-screen flex items-center justify-center">
+            {{ $slot }}
+        </main>
 
         @stack('modals')
 
