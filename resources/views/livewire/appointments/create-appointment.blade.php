@@ -1,5 +1,5 @@
 <div x-data="{ show: true }" class="px-6 py-12">
-   {{-- <x-validation-errors class="mb-4" /> --}}
+   <x-validation-errors class="mb-4" />
 
     @if (session('status'))
         <div class="mb-4 font-medium text-sm text-green-600">

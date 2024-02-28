@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-authentication-card>
-        <div class="px-6 py-12">
+        <div class="px-6 py-12 bg-white rounded-lg border border-gray-200">
             <x-slot name="logo">
                 {{-- <x-authentication-card-logo /> --}}
             </x-slot>
@@ -10,10 +10,12 @@
                     {{ session('status') }}
                 </div>
             @endif
+            
             <hgroup class="mb-10">
                 <h1 class="font-poppins text-2xl text-primary">Zeaborn, hello?</h1>
                 <p class="opacity-25 text-xs">Mema Queueing System</p>
             </hgroup>
+
             <form method="POST" action="{{ route('login') }}" autocomplete="off">
                 @csrf
                 <div class="space-y-5">

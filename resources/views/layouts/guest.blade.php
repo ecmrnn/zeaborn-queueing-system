@@ -18,7 +18,7 @@
         @livewireStyles
     </head>
     <body>
-        <div class="text-gray-900 antialiased">
+        <div class="antialiased bg-gray-50">
             {{ $slot }}
         </div>
 

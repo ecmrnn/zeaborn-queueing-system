@@ -37,7 +37,7 @@ class CreateAppointment extends Component
 
     public function save()
     {
-        if ($this->reportingStaff == '') {
+        if ($this->reportingStaff == '' || $this->otherStaff !== '') {
             $reception = DB::table('users')->select()->where('first_name', 'reception')->first();
             $this->reportingStaff = $reception->id;
         }
