@@ -130,9 +130,9 @@
                                 <p class="text-sm truncate">{{ $appointment->purpose }}</p>
                             </div>
                             <button
-                                wire:click="checkAppointment({{ $appointment->id }})"
-                                wire:confirm="Tapos na talaga si {{ $appointment->first_name . " " . $appointment->last_name}}?"
-                                class="px-3 py-2 text-white text-sm bg-primary rounded-lg hover:bg-primary-100">Done</button>
+                                {{-- wire:click="checkAppointment({{ $appointment->id }})" --}}
+                                wire:click="viewPendingAppointment"
+                                class="px-3 py-2 text-white text-xs bg-primary rounded-lg hover:bg-primary-100">View</button>
                         </div>
                         <div class="mt-2 px-3 flex justify-between">
                             <p class="text-xs opacity-50">Time in: {{ date_format($appointment->created_at, "h:i A") }}</p>
@@ -143,4 +143,21 @@
             </div>
         </div>
     </aside>
+
+    @push('modals')
+        <x-dialog-modal>
+            <x-slot name="title">
+                Sample
+            </x-slot>
+
+            <x-slot name="content">
+                Content
+            </x-slot>
+
+            <x-slot name="footer">
+                Footer
+            </x-slot>
+        </x-dialog-modal>
+    @endpush
+
 </div>

@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="max-h-screen bg-white border-b border-gray-200 xl:border-r xl:border-gray-200 sticky top-0 z-50">
+<nav x-data="{ open: false }" class="max-h-screen bg-white border-b border-gray-200 xl:border-r xl:border-gray-200 sticky top-0 z-40">
     <!-- Primary Navigation Menu -->
     <div class="xl:h-full flex items-center justify-between xl:border-0 ">
         <div class="xl:h-full flex flex-col">

@@ -13,10 +13,8 @@ class Dashboard extends Component
 
     public function checkAppointment($id)
     {
-        // Get record
         $appointment = Appointment::find($id);
 
-        // Auth
         if ($appointment->user_id !== Auth::user()->id) {
             return session()->flash('error', 'no!');
         }
@@ -26,6 +24,10 @@ class Dashboard extends Component
         $appointment->save();
 
         session()->flash('success', 'Appointment Done');
+    }
+
+    public function viewPendingAppointment($id)
+    {
     }
 
     // Update the status of the user
@@ -60,6 +62,7 @@ class Dashboard extends Component
 
         // Retrieve count of done appointments
         $done = Appointment::all()
+            ->where('user_id', $user->id)
             ->where('status', 'done')
             ->count();
 
